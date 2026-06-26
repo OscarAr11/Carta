@@ -1,0 +1,655 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Combinación de degradados radiales para replicar la onda de movimiento verde sobre el fondo arena/crema */
+    background: 
+        radial-gradient(circle at 100% 50%, #ffffff 0%, transparent 45%),         /* Destello de luz blanco en el borde derecho */
+        radial-gradient(circle at 45% 65%, #183e32 0%, transparent 55%),         /* Verde pino oscuro profundo en el centro inferior */
+        radial-gradient(circle at 75% 45%, #64ab8d 0%, transparent 45%),         /* Verde salvia claro en la curva derecha */
+        radial-gradient(circle at 15% 20%, #306653 0%, transparent 50%),         /* Verde bosque en la esquina superior izquierda */
+        #e3e1d5; /* Fondo base color arena/crema que unifica la imagen */
+
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.scene {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 18px;
+}
+
+.envelope-stage {
+    position: relative;
+    width: min(720px, 94vw);
+    height: 760px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CARTA */
+
+.letter-card {
+    position: absolute;
+    width: min(520px, 82vw);
+    min-height: 640px;
+    padding: 38px 42px;
+    background: #fff5df;
+    color: #133229;
+
+    z-index: 2;
+    transform: translateY(190px) scale(.78);
+    opacity: 0;
+
+    transition:
+        transform 1.7s cubic-bezier(.2,.9,.2,1),
+        opacity .8s ease;
+
+    filter: drop-shadow(0 20px 25px rgba(0,0,0,.25));
+}
+
+.stamp-edge {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background:
+        radial-gradient(circle at 0 12px, transparent 12px, #fff5df 13px) left top / 24px 24px repeat-y,
+        radial-gradient(circle at 100% 12px, transparent 12px, #fff5df 13px) right top / 24px 24px repeat-y,
+        radial-gradient(circle at 12px 0, transparent 12px, #fff5df 13px) left top / 24px 24px repeat-x,
+        radial-gradient(circle at 12px 100%, transparent 12px, #fff5df 13px) left bottom / 24px 24px repeat-x;
+}
+
+.letter-top {
+    position: relative;
+}
+
+.letter-top h1 {
+    text-align: center;
+    font-size: 34px;
+    letter-spacing: 1px;
+    color: #133229;
+    margin-bottom: 24px;
+}
+
+.letter-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 190px;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.letter-info div {
+    border-bottom: 2px solid #133229;
+    padding-bottom: 4px;
+}
+
+.letter-info span {
+    margin-right: 10px;
+}
+
+.letter-info strong {
+    font-family: "Brush Script MT", "Segoe Script", cursive;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.stamps {
+    position: absolute;
+    top: 68px;
+    right: 12px;
+    display: flex;
+    gap: 10px;
+}
+
+.stamp {
+    width: 58px;
+    height: 70px;
+    border: 2px dashed #133229;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: #133229;
+}
+
+.letter-card h2 {
+    margin: 40px 0 24px;
+    text-align: center;
+    font-family: "Brush Script MT", "Segoe Script", cursive;
+    font-size: 36px;
+    font-weight: 400;
+    color: #133229;
+}
+
+.letter-body {
+    height: 290px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+.typewriter {
+    font-family: "Brush Script MT", "Segoe Script", cursive;
+    font-size: 22px;
+    line-height: 1.35;
+    text-align: justify;
+    white-space: pre-wrap;
+    color: #133229;
+}
+
+.typewriter::after {
+    content: "|";
+    margin-left: 2px;
+    animation: caret .75s step-end infinite;
+}
+
+.typewriter.finished::after {
+    display: none;
+}
+
+@keyframes caret {
+    50% {
+        opacity: 0;
+    }
+}
+
+.letter-footer {
+    margin-top: 26px;
+    display: flex;
+    justify-content: space-between;
+    font-family: "Brush Script MT", "Segoe Script", cursive;
+    font-size: 24px;
+    color: #133229;
+}
+
+/* SOBRE */
+
+.envelope {
+    position: absolute;
+    bottom: 80px;
+    width: min(640px, 92vw);
+    height: 360px;
+    background: #183e32;
+    overflow: hidden;
+    z-index: 5;
+    box-shadow: 0 35px 65px rgba(0,0,0,.35);
+}
+
+.pocket {
+    position: absolute;
+    inset: 0;
+    background: #183e32;
+    z-index: 2;
+}
+
+.flap-top {
+    position: absolute;
+    inset: 0;
+    background: #183e32;
+    clip-path: polygon(0 0, 50% 55%, 100% 0);
+    transform-origin: top;
+    transition: transform 1s ease;
+    z-index: 6;
+}
+
+.flap-left {
+    position: absolute;
+    inset: 0;
+    background: #306653;
+    clip-path: polygon(0 0, 50% 50%, 0 100%);
+    z-index: 4;
+}
+
+.flap-right {
+    position: absolute;
+    inset: 0;
+    background: #306653;
+    clip-path: polygon(100% 0, 50% 50%, 100% 100%);
+    z-index: 4;
+}
+
+
+/* =========================
+   SELLO ESTILO REPRODUCTOR
+========================= */
+
+.seal {
+
+    position: absolute;
+
+    left: 50%;
+    top: 48%;
+
+    transform: translate(-50%, -50%);
+
+    width: 80px;
+    height: 80px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,0.35);
+
+    background:
+        linear-gradient(
+            145deg,
+            #dff1e2,
+            #8fb99f
+        );
+
+    color: #17392f;
+
+    font-size: 32px;
+
+    font-weight: 300;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 20;
+
+    box-shadow:
+        0 10px 20px rgba(0,0,0,0.25),
+        inset 0 2px 3px rgba(255,255,255,0.8),
+        inset 0 -5px 10px rgba(0,0,0,0.15);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+
+}
+
+
+/* Brillo al pasar el cursor */
+
+.seal:hover {
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.08);
+
+    background:
+        linear-gradient(
+            145deg,
+            #eaf8ed,
+            #9ec7ad
+        );
+
+    box-shadow:
+        0 0 25px rgba(100,171,141,.6),
+        0 12px 24px rgba(0,0,0,.30),
+        inset 0 2px 4px rgba(255,255,255,.9);
+
+}
+
+
+/* Efecto al presionar */
+
+.seal:active {
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.92);
+
+    box-shadow:
+        0 5px 10px rgba(0,0,0,.20),
+        inset 0 3px 6px rgba(0,0,0,.15);
+
+}
+
+/* Brillo al pasar el cursor */
+
+.seal:hover {
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.08);
+
+    background:
+        rgba(255,255,255,.15);
+
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,.8),
+        inset 0 -15px 30px rgba(0,0,0,.2),
+        0 0 30px rgba(255,255,255,.35),
+        0 8px 30px rgba(0,0,0,.45);
+
+}
+
+
+/* Efecto al hacer clic */
+
+.seal:active {
+
+    transform:
+        translate(-50%, -50%)
+        scale(.95);
+
+}
+.seal:hover {
+    transform: translate(-50%, -50%) scale(1.08);
+}
+
+.instruction {
+    position: absolute;
+    bottom: 28px;
+    font-size: 12px;
+    color: #fff;
+    opacity: .85;
+    z-index: 20;
+}
+
+/* ANIMACIÓN ABIERTO */
+
+.envelope-stage.open .seal {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(.3);
+}
+
+.envelope-stage.open .flap-top {
+    transform: rotateX(180deg);
+}
+
+.envelope-stage.open .letter-card {
+    opacity: 1;
+    transform: translateY(-110px) scale(1);
+    z-index: 8;
+}
+
+.envelope-stage.open .instruction {
+    opacity: 0;
+}
+
+/* después de abrir */
+
+.envelope-stage.reading {
+    height: auto;
+    min-height: 100vh;
+    align-items: flex-start;
+    padding-top: 30px;
+}
+
+.envelope-stage.reading .envelope {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .8s ease;
+}
+
+.envelope-stage.reading .letter-card {
+    position: relative;
+    transform: translateY(0) scale(1);
+}
+
+/* MENÚ */
+
+/* =========================
+   MENÚ ESTILO REPRODUCTOR
+========================= */
+
+.bottom-menu {
+    margin-top: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+.bottom-menu a {
+
+    width: 140px;
+    height: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    border-radius: 999px;
+
+    border: 1px solid rgba(255,255,255,.35);
+
+
+    background:
+        rgba(255,255,255,.18);
+
+
+    color: #17392f;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+
+    cursor: pointer;
+
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+
+    box-shadow:
+        0 8px 16px rgba(0,0,0,.18),
+        inset 0 1px 2px rgba(255,255,255,.45);
+
+
+    transition: .3s ease;
+}
+
+
+/* Igual que los botones del tocadiscos */
+
+.bottom-menu a:hover {
+
+    background:
+        rgba(255,255,255,.32);
+
+
+    transform:
+        translateY(-2px)
+        scale(1.05);
+
+
+    box-shadow:
+        0 12px 24px rgba(0,0,0,.25),
+        inset 0 1px 2px rgba(255,255,255,.6);
+
+}
+
+
+/* Efecto al presionar */
+
+/* =========================
+   MENÚ FINAL DE LA CARTA
+   ESTILO TOCADISCOS
+========================= */
+
+.bottom-menu {
+
+    position: relative;
+
+    width: 100%;
+
+    margin-top: 40px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 18px;
+
+}
+
+
+/* BOTONES DEL MENÚ */
+/* aqui -*/
+.bottom-menu {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(20px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+
+}
+/* aquit -*/
+.bottom-menu.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+
+}
+.bottom-menu a {
+
+    width: 140px;
+
+    height: 50px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+
+    /* Forma tipo botón del reproductor */
+
+    border-radius: 999px;
+
+
+    /* Cristal */
+
+    background: rgba(255,255,255,0.18);
+
+    border: 1px solid rgba(255,255,255,0.35);
+
+
+    /* Texto */
+
+    color: #17392f;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.3px;
+
+
+    /* Efecto vidrio */
+
+    backdrop-filter: blur(10px);
+
+    -webkit-backdrop-filter: blur(10px);
+
+
+    /* Relieve igual al tocadiscos */
+
+    box-shadow:
+        0 8px 16px rgba(0,0,0,0.18),
+        inset 0 1px 2px rgba(255,255,255,0.45);
+
+
+    cursor: pointer;
+
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        background .3s ease,
+        color .3s ease;
+
+}
+
+
+/* Al pasar el cursor */
+
+.bottom-menu a:hover {
+
+    background:
+        rgba(100,171,141,0.35);
+
+    color:
+        #17392f;
+
+
+    transform:
+        translateY(-3px)
+        scale(1.05);
+
+
+    box-shadow:
+        0 0 20px rgba(100,171,141,0.8),
+        0 12px 24px rgba(0,0,0,0.25),
+        inset 0 1px 2px rgba(255,255,255,0.6);
+
+}
+
+
+/* Al presionar */
+
+.bottom-menu a:active {
+
+    transform:
+        translateY(0)
+        scale(0.95);
+
+
+    box-shadow:
+        0 5px 10px rgba(0,0,0,0.15),
+        inset 0 3px 5px rgba(0,0,0,0.15);
+
+}
+
+
+/* Responsive */
+
+@media (max-width: 600px) {
+
+    .bottom-menu {
+
+        flex-direction: column;
+
+        gap: 12px;
+
+    }
+
+
+    .bottom-menu a {
+
+        width: 180px;
+
+    }
+
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta</title>
+    <link rel="stylesheet" href="sobre.css">
+</head>
+<body>
+
+    <audio id="musicaCarta" loop>
+        <source src="sounds/cancion.mp3" type="audio/mpeg">
+    </audio>
+
+    <main class="scene">
+
+        <section class="envelope-stage" id="envelopeStage">
+
+            <div class="letter-card" id="letterCard">
+
+                <div class="stamp-edge"></div>
+
+                <header class="letter-top">
+                    <h1>༺༻</h1>
+
+                    <div class="letter-info">
+                        <div>
+                            <span>Para:</span>
+                            <strong>Betsy</strong>
+                        </div>
+
+                        <div>
+                            <span>De:</span>
+                            <strong>Oscar</strong>
+                        </div>
+                    </div>
+
+                    <div class="stamps">
+                        <div class="stamp">ღ</div>
+                    </div>
+                </header>
+
+                <h2></h2>
+
+                <section class="letter-body" id="textBox">
+                    <p id="typewriter" class="typewriter"></p>
+                </section>
+
+                <footer class="letter-footer">
+                    <span>26 / 06</span>
+                    <span></span>
+                </footer>
+
+                <nav class="bottom-menu" id="glassMenu">
+                    <a href="cancion.html">Canción</a>
+                    <a href="ahoratu.html">Ahora tú</a>
+                </nav>
+
+            </div>
+
+            <div class="envelope" id="envelope">
+                <div class="flap-top"></div>
+                <div class="pocket"></div>
+                <div class="flap-left"></div>
+                <div class="flap-right"></div>
+                <div class="flap-bottom"></div>
+                
+
+                <button class="seal" id="seal" aria-label="Abrir carta">
+                    ⚘
+                </button>
+            </div>
+
+            <p class="instruction" id="instruction">
+                Toca el sello para abrir la carta.
+            </p>
+
+        </section>
+
+    </main>
+
+    <script src="sobre.js"></script>
+</body>
+</html>

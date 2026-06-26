@@ -1,0 +1,199 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    background: 
+        radial-gradient(circle at 100% 50%, #ffffff 0%, transparent 45%),
+        radial-gradient(circle at 45% 65%, #183e32 0%, transparent 55%),
+        radial-gradient(circle at 75% 45%, #64ab8d 0%, transparent 45%),
+        radial-gradient(circle at 15% 20%, #306653 0%, transparent 50%),
+        #e3e1d5;
+
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    color: #133229;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px;
+}
+
+.message-card {
+
+    width: min(700px, 92vw);
+
+    padding: 40px 45px;
+
+    border-radius: 28px;
+
+    background: rgba(255,255,255,0.12);
+
+    border: 1px solid rgba(255,255,255,0.28);
+
+    backdrop-filter: blur(18px) saturate(170%);
+    -webkit-backdrop-filter: blur(18px) saturate(170%);
+
+    box-shadow:
+        0 20px 45px rgba(24,62,50,0.28),
+        inset 0 1px 2px rgba(255,255,255,0.35);
+
+    text-align: center;
+}
+
+.message-card h1 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.message-card p {
+    font-size: 12px;
+    opacity: 0.85;
+    margin-bottom: 24px;
+}
+
+textarea {
+
+    width: 100%;
+
+    height: 220px;
+
+    padding: 20px;
+
+    resize: none;
+
+    border-radius: 20px;
+
+    border: 1px solid rgba(255,255,255,0.28);
+
+    background: rgba(255,255,255,0.12);
+
+    color: #133229;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    outline: none;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+}
+
+textarea::placeholder {
+    color: rgba(255,255,255,0.65);
+}
+
+textarea:focus {
+    border-color: rgba(255,255,255,0.45);
+
+    box-shadow:
+        0 0 22px rgba(255,255,255,0.16);
+}
+
+.buttons {
+    margin-top: 22px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+button,
+.glass-link {
+
+    width: 100%;
+
+    height: 50px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 999px;
+
+    border: 1px solid rgba(255,255,255,0.35);
+
+    background: rgba(255,255,255,0.18);
+
+    color: #FFFFFF;
+
+    text-decoration: none;
+
+    font: inherit;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 8px 16px rgba(0,0,0,0.18),
+        inset 0 1px 2px rgba(255,255,255,0.45);
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        color .3s ease,
+        box-shadow .3s ease;
+}
+
+
+/* Hover verde */
+
+button:hover,
+.glass-link:hover {
+
+    background:
+        rgba(100,171,141,0.35);
+
+    color:
+        white;
+
+    transform:
+        translateY(-3px)
+        scale(1.05);
+
+    box-shadow:
+        0 0 20px rgba(100,171,141,0.8),
+        0 12px 24px rgba(0,0,0,0.25),
+        inset 0 1px 2px rgba(255,255,255,0.6);
+
+}
+
+
+/* Click */
+
+button:active,
+.glass-link:active {
+
+    transform:
+        translateY(0)
+        scale(0.95);
+
+    box-shadow:
+        0 5px 10px rgba(0,0,0,0.15),
+        inset 0 3px 5px rgba(0,0,0,0.15);
+
+}
